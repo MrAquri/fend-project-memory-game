@@ -48,13 +48,23 @@ function shuffle(array) {
 }
 
 
-//Function opening all the cards
+
 const allCards = document.querySelectorAll('.card');
+let openCards = [];
+//Function opening all the cards
 allCards.forEach(function(card) {
-card.addEventListener('click', function(event) {
-card.classList.add('open','show');
+    card.addEventListener('click', function(event) {
+    if (openCards.length >= 2 ) {
+          //add hiding
+    } else {
+      openCards.push(card);
+      card.classList.add('open','show');
+    }
+
+    });
 });
 
+//Storing values
 
 
 
