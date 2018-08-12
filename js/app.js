@@ -48,9 +48,12 @@ function shuffle(array) {
 }
 
 
-
-
-
+//Function opening all the cards
+const allCards = document.querySelectorAll('.card');
+allCards.forEach(function(card) {
+card.addEventListener('click', function(event) {
+card.classList.add('open','show');
+});
 
 
 
