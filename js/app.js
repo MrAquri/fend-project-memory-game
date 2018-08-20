@@ -10,15 +10,6 @@
  */
 
 
-// var board = document.getElementsByClassName("deck");
-// function createDeck () {
-//   for (i = 1; i <= cards.lenght; i++) {
-//     let createList = document.createElement("Li");
-//     createList.setAttribute("class", card + i);
-//     board.appendChild(createList);
-//   }
-
-// }
 
 /*Creating dynamic list att. 1
 const board = document.getElementsByClassName("deck");
@@ -51,16 +42,20 @@ function shuffle(array) {
 
 const allCards = document.querySelectorAll('.card');
 let openCards = [];
-//Function opening all the cards
+//Function opening and closing all the cards after one sec delay
 allCards.forEach(function(card) {
     card.addEventListener('click', function(event) {
-    if (openCards.length >= 2 ) {
-          //add hiding
-    } else {
-      openCards.push(card);
-      card.classList.add('open','show');
-    }
-
+        openCards.push(card);
+        card.classList.add('open', 'show');
+        if (openCards.length == 2) {
+            setTimeout(function() {
+                openCards.forEach(function(card) {
+                    card.classList.remove('open', 'show');
+                    openCards = [];
+                    console.log('time test');
+                });
+            }, 1000);
+        }
     });
 });
 
