@@ -1,15 +1,22 @@
-
 // Create a list that holds all of your cards
 let cardList = ["fa-bicycle","fa-bicycle","fa-leaf","fa-leaf","fa-cube","fa-cube","fa-anchor","fa-anchor","fa-paper-plane-o","fa-paper-plane-o","fa-bolt","fa-bolt","fa-bomb","fa-bomb","fa-diamond","fa-diamond"];
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+ // Shuffle function from http://stackoverflow.com/a/2450976
+ function shuffle(array) {
+     var currentIndex = array.length, temporaryValue, randomIndex;
 
+     while (currentIndex !== 0) {
+         randomIndex = Math.floor(Math.random() * currentIndex);
+         currentIndex -= 1;
+         temporaryValue = array[currentIndex];
+         array[currentIndex] = array[randomIndex];
+         array[randomIndex] = temporaryValue;
+     }
 
+     return array;
+ }
+
+shuffle(cardList);
 
 //Creating dynamic list
 
@@ -23,43 +30,33 @@ let board = document.querySelector(".deck");
      }
  }
 
+
+
 //Initializing the game
 createDeck();
-
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-}
-
-
 
 const allCards = document.querySelectorAll('.card');
 let openCards = [];
 //Function opening and closing all the cards after one sec delay
 allCards.forEach(function(card) {
     card.addEventListener('click', function(event) {
-      if (card.classList.contains('open') != true && card.classList.contains('show') != true ) {
-        openCards.push(card);
-        card.classList.add('open', 'show');
-        if (openCards.length == 2) {
-            setTimeout(function() {
-                openCards.forEach(function(card) {
-                    card.classList.remove('open', 'show');
-                    openCards = [];
-                });
-            }, 1000);
+        if (card.classList.contains('open') != true && card.classList.contains('show') != true) {
+            openCards.push(card);
+            card.classList.add('open', 'show');
+            if (openCards.length == 2) {
+                if (openCards[0].innerHTML == openCards[1].innerHTML) {
+                    openCards[0].classList.add('match');
+                    openCards[1].classList.add('match');
+                }
+                //hide if cards do not match
+                setTimeout(function() {
+                    openCards.forEach(function(card) {
+                        card.classList.remove('open', 'show');
+                        openCards = [];
+                    });
+                }, 1000);
+            }
         }
-      }
     });
 });
 
