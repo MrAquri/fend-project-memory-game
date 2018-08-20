@@ -16,10 +16,10 @@ let cardList = ["fa-bicycle","fa-bicycle","fa-leaf","fa-leaf","fa-cube","fa-cube
      return array;
  }
 
+//Initialize shuffling function
 shuffle(cardList);
 
 //Creating dynamic list
-
 function createDeck () {
 let board = document.querySelector(".deck");
  for (let i = 0; i < cardList.length; i++) {
@@ -29,8 +29,6 @@ let board = document.querySelector(".deck");
      board.appendChild(createList);
      }
  }
-
-
 
 //Initializing the game
 createDeck();
@@ -44,17 +42,20 @@ allCards.forEach(function(card) {
             openCards.push(card);
             card.classList.add('open', 'show');
             if (openCards.length == 2) {
+                //Compare innerHTML and if they match flip them over
                 if (openCards[0].innerHTML == openCards[1].innerHTML) {
                     openCards[0].classList.add('match');
                     openCards[1].classList.add('match');
+                    openCards = [];
+                } else {
+                    //hide if cards do not match
+                    setTimeout(function() {
+                        openCards.forEach(function(card) {
+                            card.classList.remove('open', 'show');
+                            openCards = [];
+                        });
+                    }, 1000);
                 }
-                //hide if cards do not match
-                setTimeout(function() {
-                    openCards.forEach(function(card) {
-                        card.classList.remove('open', 'show');
-                        openCards = [];
-                    });
-                }, 1000);
             }
         }
     });
