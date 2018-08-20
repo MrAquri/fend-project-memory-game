@@ -45,6 +45,7 @@ let openCards = [];
 //Function opening and closing all the cards after one sec delay
 allCards.forEach(function(card) {
     card.addEventListener('click', function(event) {
+      if (card.classList.contains('open') != true && card.classList.contains('show') != true ) {
         openCards.push(card);
         card.classList.add('open', 'show');
         if (openCards.length == 2) {
@@ -52,10 +53,10 @@ allCards.forEach(function(card) {
                 openCards.forEach(function(card) {
                     card.classList.remove('open', 'show');
                     openCards = [];
-                    console.log('time test');
                 });
             }, 1000);
         }
+      }
     });
 });
 
