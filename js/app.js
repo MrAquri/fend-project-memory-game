@@ -1,6 +1,6 @@
 
 // Create a list that holds all of your cards
-// let cardList = ["fa fa-bicycle","fa fa-bicycle","fa fa-leaf","fa fa-leaf","fa fa-cube","fa fa-cube","fa fa-anchor","fa fa-anchor","fa fa-paper-plane-o","fa fa-paper-plane-o","fa fa-bolt","fa fa-bolt","fa fa-bomb","fa fa-bomb","fa fa-diamond","fa fa-diamond"];
+let cardList = ["fa-bicycle","fa-bicycle","fa-leaf","fa-leaf","fa-cube","fa-cube","fa-anchor","fa-anchor","fa-paper-plane-o","fa-paper-plane-o","fa-bolt","fa-bolt","fa-bomb","fa-bomb","fa-diamond","fa-diamond"];
 
 /*
  * Display the cards on the page
@@ -11,17 +11,20 @@
 
 
 
-/*Creating dynamic list att. 1
-const board = document.getElementsByClassName("deck");
+//Creating dynamic list
+
 function createDeck () {
+let board = document.querySelector(".deck");
  for (let i = 0; i < cardList.length; i++) {
      let createList = document.createElement("li");
      createList.classList.add("card");
-     createList.innerHTML = "<i class= " + cardList[i] + "</i>";
+     createList.innerHTML = '<i class="fa ' + cardList[i] + '"></i>';
      board.appendChild(createList);
      }
  }
-*/
+
+//Initializing the game
+createDeck();
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
