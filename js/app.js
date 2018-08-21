@@ -19,7 +19,8 @@ let cardList = ["fa-bicycle","fa-bicycle","fa-leaf","fa-leaf","fa-cube","fa-cube
 //Initialize shuffling function
 shuffle(cardList);
 
-
+const stars = document.querySelector('.stars');
+const oneStar = stars.getElementsByTagName("li");
 const movesNumber = document.querySelector('.moves');
 let moves = 0;
 
@@ -66,7 +67,15 @@ allCards.forEach(function(card) {
                 //Counting moves
                 moves++;
                 movesNumber.innerHTML = moves;
-                console.log(movesNumber);
+                //Removing stars
+                if (movesNumber.innerHTML == 12 ) {
+                  var last = oneStar[oneStar.length-1];
+                  stars.removeChild(last);
+                }
+                if (movesNumber.innerHTML == 18 ) {
+                  var last = oneStar[oneStar.length-1];
+                  stars.removeChild(last);
+                }
             }
         }
     });
