@@ -19,6 +19,10 @@ let cardList = ["fa-bicycle","fa-bicycle","fa-leaf","fa-leaf","fa-cube","fa-cube
 //Initialize shuffling function
 shuffle(cardList);
 
+
+const movesNumber = document.querySelector('.moves');
+let moves = 0;
+
 //Creating dynamic list
 function createDeck () {
 let board = document.querySelector(".deck");
@@ -26,6 +30,7 @@ let board = document.querySelector(".deck");
      let createList = document.createElement("li");
      createList.classList.add("card");
      createList.innerHTML = '<i class="fa ' + cardList[i] + '"></i>';
+     moves = 0;
      board.appendChild(createList);
      }
  }
@@ -35,6 +40,8 @@ createDeck();
 
 const allCards = document.querySelectorAll('.card');
 let openCards = [];
+
+
 //Function opening and closing all the cards after one sec delay
 allCards.forEach(function(card) {
     card.addEventListener('click', function(event) {
@@ -56,12 +63,16 @@ allCards.forEach(function(card) {
                         });
                     }, 1000);
                 }
+                //Counting moves
+                moves++;
+                movesNumber.innerHTML = moves;
+                console.log(movesNumber);
             }
         }
     });
 });
 
-//Storing values
+
 
 
 
