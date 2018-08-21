@@ -22,7 +22,11 @@ shuffle(cardList);
 const stars = document.querySelector('.stars');
 const oneStar = stars.getElementsByTagName("li");
 const movesNumber = document.querySelector('.moves');
+let timer = document.querySelector('.timer');
 let moves = 0;
+let minutes = 0;
+let seconds = 0;
+let hours = 0;
 
 //Creating dynamic list
 function createDeck () {
@@ -56,6 +60,7 @@ allCards.forEach(function(card) {
                     openCards[1].classList.add('match');
                     openCards = [];
                 } else {
+
                     //hide if cards do not match
                     setTimeout(function() {
                         openCards.forEach(function(card) {
@@ -82,9 +87,24 @@ allCards.forEach(function(card) {
 });
 
 
+//Set timer
+var setTimer = setInterval(function(){
+  seconds++;
+  timer.innerHTML = hours + ' hrs ' + minutes + ' mins ' + seconds + ' secs';
+  if (seconds == 60) {
+    minutes++
+    seconds = 0;
+  }
+  if (minutes == 60) {
+    hours++;
+    minutes = 0;
+  }
+}, 1000);
 
-
-
+//Stop timer
+function stopTimer () {
+  clearInterval(setTimer);
+}
 
 
 /*
