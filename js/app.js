@@ -28,9 +28,10 @@ let minutes = 0;
 let seconds = 0;
 let hours = 0;
 
+let restartButton = document.querySelector('.restart');
+let board = document.querySelector(".deck");
 //Creating dynamic list
 function createDeck () {
-let board = document.querySelector(".deck");
  for (let i = 0; i < cardList.length; i++) {
      let createList = document.createElement("li");
      createList.classList.add("card");
@@ -88,7 +89,7 @@ allCards.forEach(function(card) {
 
 
 //Set timer
-var setTimer = setInterval(function(){
+var setTimer = setInterval (function (){
   seconds++;
   timer.innerHTML = hours + ' hrs ' + minutes + ' mins ' + seconds + ' secs';
   if (seconds == 60) {
@@ -106,14 +107,29 @@ function stopTimer () {
   clearInterval(setTimer);
 }
 
+//Reset button
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+restartButton.addEventListener('click', function () {
+
+
+//Reset and stop time
+  timer.innerHTML = 0 + ' hrs ' + 0  + ' mins ' + 0  + ' secs';
+stopTimer();
+//Reset moves
+movesNumber.innerHTML = 0;
+moves=0;
+setTimer;
+//Flipping cards over
+allCards.forEach(function(card) {
+card.classList.remove('open', 'show');
+card.classList.remove('match');
+card.classList.add('card');
+openCards=[];
+
+//Creating newboard
+board.innerHTML = "";
+shuffle(cardList);
+createDeck();
+
+})
+})
