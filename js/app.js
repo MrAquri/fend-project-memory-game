@@ -19,6 +19,7 @@ let cardList = ["fa-bicycle","fa-bicycle","fa-leaf","fa-leaf","fa-cube","fa-cube
 //Initialize shuffling function
 shuffle(cardList);
 
+//Stored all global variables
 const stars = document.querySelector('.stars');
 const oneStar = stars.getElementsByTagName("li");
 const movesNumber = document.querySelector('.moves');
@@ -27,9 +28,10 @@ let moves = 0;
 let minutes = 0;
 let seconds = 0;
 let hours = 0;
-
 let restartButton = document.querySelector('.restart');
 let board = document.querySelector(".deck");
+const popup = document.querySelector('.popuptext');
+
 //Creating dynamic list
 function createDeck () {
  for (let i = 0; i < cardList.length; i++) {
@@ -46,7 +48,7 @@ createDeck();
 
 const allCards = document.querySelectorAll('.card');
 let openCards = [];
-
+let matchedCards = [];
 
 //Function opening and closing all the cards after one sec delay
 allCards.forEach(function(card) {
@@ -59,6 +61,7 @@ allCards.forEach(function(card) {
                 if (openCards[0].innerHTML == openCards[1].innerHTML) {
                     openCards[0].classList.add('match');
                     openCards[1].classList.add('match');
+                    matchedCards.push(openCards);
                     openCards = [];
                 } else {
 
@@ -87,7 +90,6 @@ allCards.forEach(function(card) {
     });
 });
 
-
 //Set timer
 var setTimer = setInterval (function (){
   seconds++;
@@ -111,7 +113,6 @@ function stopTimer () {
 
 restartButton.addEventListener('click', function () {
 
-
 //Reset and stop time
   timer.innerHTML = 0 + ' hrs ' + 0  + ' mins ' + 0  + ' secs';
 stopTimer();
@@ -130,6 +131,13 @@ openCards=[];
 board.innerHTML = "";
 shuffle(cardList);
 createDeck();
+//Call the matching function again
+})
+});
 
-})
-})
+//Creating popup Function
+function congrats () {
+  if (matchedCards.length == 1) {
+    popup.classList.toggle("show");
+  }
+}
