@@ -45,15 +45,19 @@ function createDeck () {
 
 //Initializing the game
 createDeck();
+theGame();
+let openCards = [];
+let matchedCards = [];
+function theGame () {
 
-const allCards = document.querySelectorAll('.card');
+let allCards = document.querySelectorAll('.card');
 let openCards = [];
 let matchedCards = [];
 
 //Function opening and closing all the cards after one sec delay
 allCards.forEach(function(card) {
     card.addEventListener('click', function(event) {
-        if (card.classList.contains('open') != true && card.classList.contains('show') != true) {
+            if (card.classList.contains('open') != true && card.classList.contains('show') != true) {
             openCards.push(card);
             card.classList.add('open', 'show');
             if (openCards.length == 2) {
@@ -80,6 +84,7 @@ allCards.forEach(function(card) {
         }
     });
 });
+};
 
 function countingMoves () {
   //Counting moves
@@ -94,12 +99,19 @@ function countingMoves () {
     var last = oneStar[oneStar.length-1];
     stars.removeChild(last);
   }
+//Start timer upon moves
+if (moves==1) {
+  seconds, minutes, hours = 0;
+  setTime();
+}
 }
 
 //Set timer
-var setTimer = setInterval (function (){
-  seconds++;
+var setTimer
+function setTime() {
+setTimer = setInterval (function (){
   timer.innerHTML = hours + ' hrs ' + minutes + ' mins ' + seconds + ' secs';
+  seconds++;
   if (seconds == 60) {
     minutes++
     seconds = 0;
@@ -109,7 +121,7 @@ var setTimer = setInterval (function (){
     minutes = 0;
   }
 }, 1000);
-
+}
 //Stop timer
 function stopTimer () {
   clearInterval(setTimer);
@@ -120,13 +132,16 @@ function stopTimer () {
 restartButton.addEventListener('click', function () {
 
 //Reset and stop time
-  timer.innerHTML = 0 + ' hrs ' + 0  + ' mins ' + 0  + ' secs';
+hours, minutes, seconds = 0;
+timer.innerHTML = hours + ' hrs ' + minutes + ' mins ' + seconds + ' secs';
 stopTimer();
+
 //Reset moves
 movesNumber.innerHTML = 0;
-moves=0;
-setTimer;
+moves = 0;
+
 //Flipping cards over
+let allCards = document.querySelectorAll('.card');
 allCards.forEach(function(card) {
 card.classList.remove('open', 'show');
 card.classList.remove('match');
@@ -138,6 +153,7 @@ board.innerHTML = "";
 shuffle(cardList);
 createDeck();
 //Call the matching function again
+theGame();
 })
 });
 
