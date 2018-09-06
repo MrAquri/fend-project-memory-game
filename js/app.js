@@ -23,7 +23,7 @@ shuffle(cardList);
 //Stored all global variables
 const stars = document.querySelector('.stars');
 const oneStar = stars.getElementsByTagName("li");
-const movesNumber = document.querySelector('.moves');
+let movesNumber = document.querySelector('.moves');
 let timer = document.querySelector('.timer');
 let moves = 0;
 let minutes = 0;
@@ -148,6 +148,7 @@ restartButton.addEventListener('click', function() {
     //Reset moves
     movesNumber.innerHTML = 0;
     moves = 0;
+    stars.innerHTML = '<li><i class="fa fa-star"></i></li>'+'<li><i class="fa fa-star"></i></li>'+'<li><i class="fa fa-star"></i></li>';
 
     //Flipping cards over
     let allCards = document.querySelectorAll('.card');
