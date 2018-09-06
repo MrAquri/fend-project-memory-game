@@ -63,6 +63,8 @@ allCards.forEach(function(card) {
                     openCards[1].classList.add('match');
                     matchedCards.push(openCards);
                     openCards = [];
+                    congrats();
+                    close();
                 } else {
 
                     //hide if cards do not match
@@ -135,9 +137,24 @@ createDeck();
 })
 });
 
-//Creating popup Function
+var modal = document.querySelector('#myModal');
+const closing = document.querySelector(".close");
+let popuptext = document.querySelector('.popuptext')
+
+//Creating popup function
 function congrats () {
-  if (matchedCards.length == 1) {
-    popup.classList.toggle("show");
+  if (matchedCards.length == 8) {
+
+stopTimer();
+finalTime = timer.innerHTML;
+  popuptext.innerHTML = '<b>Congratulations !!</b> <br/> <br/>You did this in ' + moves +' moves! </br> <br/> It took you '+ finalTime + ' !<br/> <br/>';
+  modal.style.display = 'block';
   }
+}
+
+//function closing popup screen
+function close () {
+  closing.addEventListener('click', function () {
+    modal.style.display = "none";
+  })
 }
