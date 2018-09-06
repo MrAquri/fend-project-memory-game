@@ -163,6 +163,7 @@ restartButton.addEventListener('click', function() {
         shuffle(cardList);
         createDeck();
         //Call the matching function again
+        matchedCards = [];
         theGame();
     })
 });
@@ -174,7 +175,6 @@ let popuptext = document.querySelector('.popuptext')
 //Creating popup function
 function congrats() {
     if (matchedCards.length == 8) {
-
         stopTimer();
         finalTime = timer.innerHTML;
         popuptext.innerHTML = '<b>Congratulations !!</b> <br/> <br/>You did this in ' + moves + ' moves! </br> <br/> It took you ' + finalTime + ' !<br/> <br/>';
