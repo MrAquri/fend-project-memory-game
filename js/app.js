@@ -75,22 +75,26 @@ allCards.forEach(function(card) {
                         });
                     }, 1000);
                 }
-                //Counting moves
-                moves++;
-                movesNumber.innerHTML = moves;
-                //Removing stars
-                if (movesNumber.innerHTML == 12 ) {
-                  var last = oneStar[oneStar.length-1];
-                  stars.removeChild(last);
-                }
-                if (movesNumber.innerHTML == 18 ) {
-                  var last = oneStar[oneStar.length-1];
-                  stars.removeChild(last);
-                }
+                countingMoves ()
             }
         }
     });
 });
+
+function countingMoves () {
+  //Counting moves
+  moves++;
+  movesNumber.innerHTML = moves;
+  //Removing stars
+  if (movesNumber.innerHTML == 12 ) {
+    var last = oneStar[oneStar.length-1];
+    stars.removeChild(last);
+  }
+  if (movesNumber.innerHTML == 18 ) {
+    var last = oneStar[oneStar.length-1];
+    stars.removeChild(last);
+  }
+}
 
 //Set timer
 var setTimer = setInterval (function (){
