@@ -176,8 +176,9 @@ let popuptext = document.querySelector('.popuptext')
 function congrats() {
     if (matchedCards.length == 8) {
         stopTimer();
-        finalTime = timer.innerHTML;
-        popuptext.innerHTML = '<b>Congratulations !!</b> <br/> <br/>You did this in ' + moves + ' moves! </br> <br/> It took you ' + finalTime + ' !<br/> <br/>';
+        finalTime = timer.innerHTML;        
+        finalMoves = moves + 1;
+        popuptext.innerHTML = '<b>Congratulations !!</b> <br/> <br/>You did this in ' + finalMoves + ' moves! </br> <br/> It took you ' + finalTime + ' !<br/> <br/>';
         modal.style.display = 'block';
     }
 }
